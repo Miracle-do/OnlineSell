@@ -1,0 +1,2144 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>dönt lie. – Site Officiel ® | Mode Minimaliste</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@200;300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black: #0a0a0a;
+    --white: #fafafa;
+    --grey-light: #f2f2f2;
+    --grey-mid: #c8c8c8;
+    --grey-dark: #4a4a4a;
+    --accent: #1a1a1a;
+    --font-display: 'Cormorant Garamond', serif;
+    --font-body: 'Montserrat', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--white);
+    color: var(--black);
+    font-size: 13px;
+    letter-spacing: 0.03em;
+    overflow-x: hidden;
+  }
+
+  a { text-decoration: none; color: inherit; }
+  img { max-width: 100%; display: block; }
+  ul { list-style: none; }
+
+  /* ===== ANNOUNCEMENT BAR ===== */
+  .announcement-bar {
+    background: var(--black);
+    color: var(--white);
+    text-align: center;
+    padding: 10px 20px;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+  .announcement-bar a { color: var(--white); text-decoration: underline; }
+
+  /* ===== HEADER ===== */
+  header {
+    background: var(--white);
+    border-bottom: 1px solid #e8e8e8;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+
+  .header-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+    height: 70px;
+    gap: 20px;
+  }
+
+  .header-actions-left {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    flex: 1;
+  }
+
+  .logo {
+    flex: 0 0 auto;
+    text-align: center;
+  }
+
+  .logo-text {
+    font-family: var(--font-display);
+    font-size: 26px;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    color: var(--black);
+    font-style: italic;
+  }
+  .logo-text span { font-style: normal; }
+
+  .header-actions-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex: 1;
+    justify-content: flex-end;
+  }
+
+  .header-icon {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+  .header-icon:hover { opacity: 0.6; }
+
+  .header-icon svg { width: 18px; height: 18px; }
+
+  .cart-count {
+    background: var(--black);
+    color: var(--white);
+    border-radius: 50%;
+    width: 17px; height: 17px;
+    font-size: 9px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+  }
+
+  .search-bar {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+    padding: 6px 12px;
+    gap: 8px;
+    max-width: 200px;
+  }
+  .search-bar input {
+    border: none;
+    outline: none;
+    font-family: var(--font-body);
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    background: transparent;
+    width: 140px;
+  }
+  .search-bar svg { width: 14px; height: 14px; color: #888; flex-shrink: 0; }
+
+  /* ===== NAV ===== */
+  nav {
+    border-top: 1px solid #e8e8e8;
+    padding: 0 40px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  nav::-webkit-scrollbar { display: none; }
+
+  nav ul {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    white-space: nowrap;
+  }
+
+  nav ul li a {
+    display: block;
+    padding: 13px 14px;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--black);
+    transition: color 0.2s;
+    border-bottom: 2px solid transparent;
+  }
+  nav ul li a:hover { color: var(--grey-dark); border-bottom-color: var(--black); }
+  nav ul li.special a { color: #c0392b; font-weight: 700; }
+
+  /* ===== HERO / PAGE SECTIONS ===== */
+  .page { display: none; }
+  .page.active { display: block !important; }
+
+  /* ===== HOME HERO ===== */
+  .hero {
+    position: relative;
+    height: 90vh;
+    min-height: 580px;
+    overflow: hidden;
+    background: #0d0d0d;
+    display: flex;
+    align-items: center;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #0d0d0d 0%, #1a1612 50%, #0d0d0d 100%);
+  }
+
+  .hero-image-placeholder {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 55%;
+    background: url('https://i0.wp.com/dont-lie.com/wp-content/uploads/2026/04/MODEL-04.jpg?fit=1920%2C1080&ssl=1') center/cover no-repeat;
+    opacity: 0.7;
+  }
+  .hero-image-placeholder::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, #0d0d0d 0%, transparent 60%);
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 0 80px;
+    max-width: 600px;
+    animation: fadeUp 1s ease both;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--grey-mid);
+    margin-bottom: 16px;
+    animation: fadeUp 1s 0.1s ease both;
+  }
+
+  .hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(52px, 7vw, 96px);
+    font-weight: 300;
+    color: var(--white);
+    line-height: 0.95;
+    letter-spacing: -0.01em;
+    margin-bottom: 24px;
+    animation: fadeUp 1s 0.2s ease both;
+  }
+  .hero-title em {
+    font-style: italic;
+    color: var(--grey-mid);
+  }
+
+  .hero-sub {
+    font-size: 11px;
+    color: var(--grey-mid);
+    letter-spacing: 0.06em;
+    line-height: 1.8;
+    margin-bottom: 40px;
+    max-width: 380px;
+    animation: fadeUp 1s 0.3s ease both;
+  }
+
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--white);
+    color: var(--black);
+    padding: 14px 32px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    transition: all 0.3s;
+    animation: fadeUp 1s 0.4s ease both;
+    cursor: pointer;
+  }
+  .hero-cta:hover { background: var(--grey-mid); }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: rgba(255,255,255,0.4);
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+  .hero-scroll-line {
+    width: 1px;
+    height: 40px;
+    background: rgba(255,255,255,0.3);
+    animation: scrollLine 2s ease-in-out infinite;
+  }
+  @keyframes scrollLine {
+    0%, 100% { transform: scaleY(1); opacity: 0.3; }
+    50% { transform: scaleY(0.5); opacity: 0.8; }
+  }
+
+  /* ===== COLLECTION STRIP ===== */
+  .collection-announce {
+    background: var(--black);
+    color: var(--white);
+    padding: 60px 80px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+
+  .collection-announce-img {
+    height: 500px;
+    overflow: hidden;
+    background: url('https://i0.wp.com/dont-lie.com/wp-content/uploads/2026/04/reza.jpg?fit=1620%2C2160&ssl=1') center/cover no-repeat;
+  }
+
+  .collection-announce-text .tag {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--grey-mid);
+    margin-bottom: 20px;
+  }
+
+  .collection-announce-text h2 {
+    font-family: var(--font-display);
+    font-size: 52px;
+    font-weight: 300;
+    line-height: 1.1;
+    margin-bottom: 24px;
+    font-style: italic;
+  }
+
+  .collection-announce-text p {
+    font-size: 12px;
+    line-height: 1.9;
+    color: var(--grey-mid);
+    margin-bottom: 32px;
+  }
+
+  .btn-outline-white {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid rgba(255,255,255,0.4);
+    color: var(--white);
+    padding: 12px 28px;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    transition: all 0.3s;
+    cursor: pointer;
+  }
+  .btn-outline-white:hover { background: var(--white); color: var(--black); }
+
+  /* ===== FEATURED PRODUCTS ===== */
+  .section {
+    padding: 80px 40px;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 48px;
+  }
+
+  .section-title {
+    font-family: var(--font-display);
+    font-size: 36px;
+    font-weight: 300;
+    font-style: italic;
+  }
+
+  .section-link {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--black);
+    padding-bottom: 2px;
+    transition: opacity 0.2s;
+  }
+  .section-link:hover { opacity: 0.5; }
+
+  /* ===== PRODUCT GRID ===== */
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+  }
+
+  .product-card {
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    background: var(--grey-light);
+  }
+
+  .product-image {
+    aspect-ratio: 3/4;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  .product-card:hover .product-image img { transform: scale(1.05); }
+
+  .product-badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: var(--black);
+    color: var(--white);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 4px 8px;
+    z-index: 2;
+  }
+  .product-badge.out { background: #888; }
+  .product-badge.new { background: var(--black); }
+  .product-badge.sale { background: #c0392b; }
+  .product-badge.available { background: #2c7a3a; }
+
+  .product-info {
+    padding: 16px 16px 20px;
+    background: var(--white);
+  }
+
+  .product-name {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    color: var(--black);
+  }
+
+  .product-price {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .price-current {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--black);
+  }
+
+  .price-old {
+    font-size: 11px;
+    color: #aaa;
+    text-decoration: line-through;
+  }
+
+  .product-hover-btn {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--black);
+    color: var(--white);
+    text-align: center;
+    padding: 13px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+  }
+  .product-card:hover .product-hover-btn { transform: translateY(0); }
+
+  /* ===== ABOUT STRIP ===== */
+  .about-strip {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 500px;
+  }
+
+  .about-image {
+    background: url('https://i0.wp.com/dont-lie.com/wp-content/uploads/2025/12/home.webp?fit=1534%2C2148&ssl=1') center/cover no-repeat;
+  }
+
+  .about-text {
+    background: var(--black);
+    color: var(--white);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px;
+  }
+
+  .about-text .eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--grey-mid);
+    margin-bottom: 20px;
+    font-weight: 600;
+  }
+
+  .about-text h2 {
+    font-family: var(--font-display);
+    font-size: 40px;
+    font-weight: 300;
+    font-style: italic;
+    margin-bottom: 24px;
+    line-height: 1.15;
+  }
+
+  .about-text p {
+    font-size: 12px;
+    line-height: 1.9;
+    color: var(--grey-mid);
+    margin-bottom: 32px;
+  }
+
+  /* ===== NEWSLETTER ===== */
+  .newsletter {
+    background: var(--grey-light);
+    padding: 80px 40px;
+    text-align: center;
+  }
+
+  .newsletter-eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--grey-dark);
+    margin-bottom: 16px;
+    font-weight: 600;
+  }
+
+  .newsletter h2 {
+    font-family: var(--font-display);
+    font-size: 42px;
+    font-weight: 300;
+    font-style: italic;
+    margin-bottom: 12px;
+  }
+
+  .newsletter p {
+    font-size: 12px;
+    color: var(--grey-dark);
+    margin-bottom: 32px;
+    line-height: 1.8;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .newsletter p strong { color: var(--black); font-weight: 700; }
+
+  .newsletter-form {
+    display: flex;
+    max-width: 440px;
+    margin: 0 auto;
+    border: 1px solid var(--black);
+  }
+
+  .newsletter-form input {
+    flex: 1;
+    padding: 14px 20px;
+    border: none;
+    outline: none;
+    font-family: var(--font-body);
+    font-size: 12px;
+    letter-spacing: 0.05em;
+    background: transparent;
+  }
+
+  .newsletter-form button {
+    background: var(--black);
+    color: var(--white);
+    border: none;
+    padding: 14px 28px;
+    font-family: var(--font-body);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .newsletter-form button:hover { background: var(--grey-dark); }
+
+  /* ===== BOUTIQUE PAGE ===== */
+  .boutique-header {
+    padding: 50px 40px 30px;
+    border-bottom: 1px solid #e8e8e8;
+  }
+
+  .boutique-breadcrumb {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--grey-dark);
+    margin-bottom: 16px;
+  }
+  .boutique-breadcrumb a { color: var(--grey-dark); }
+  .boutique-breadcrumb span { color: var(--black); }
+
+  .boutique-title {
+    font-family: var(--font-display);
+    font-size: 42px;
+    font-weight: 300;
+    font-style: italic;
+    margin-bottom: 12px;
+  }
+
+  .boutique-count {
+    font-size: 11px;
+    color: var(--grey-dark);
+    letter-spacing: 0.05em;
+  }
+
+  .boutique-layout {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 0;
+    padding: 0;
+  }
+
+  /* Filters sidebar */
+  .filters-sidebar {
+    padding: 40px 30px;
+    border-right: 1px solid #e8e8e8;
+    background: var(--white);
+  }
+
+  .filter-group {
+    margin-bottom: 36px;
+  }
+
+  .filter-title {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    color: var(--black);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+  }
+
+  .filter-title svg { width: 12px; height: 12px; transition: transform 0.2s; }
+  .filter-title.open svg { transform: rotate(180deg); }
+
+  .filter-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .filter-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    color: var(--grey-dark);
+    transition: color 0.2s;
+  }
+  .filter-option:hover { color: var(--black); }
+
+  .filter-option input[type="checkbox"] {
+    width: 13px;
+    height: 13px;
+    border: 1px solid var(--grey-mid);
+    appearance: none;
+    cursor: pointer;
+    flex-shrink: 0;
+    position: relative;
+  }
+  .filter-option input[type="checkbox"]:checked {
+    background: var(--black);
+    border-color: var(--black);
+  }
+  .filter-option input[type="checkbox"]:checked::after {
+    content: '';
+    position: absolute;
+    width: 5px; height: 3px;
+    border-left: 1.5px solid #fff;
+    border-bottom: 1.5px solid #fff;
+    top: 3px; left: 2px;
+    transform: rotate(-45deg);
+  }
+
+  /* Boutique grid */
+  .boutique-grid-wrap {
+    padding: 40px;
+  }
+
+  .boutique-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 32px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #e8e8e8;
+  }
+
+  .sort-select {
+    padding: 8px 14px;
+    border: 1px solid #ddd;
+    font-family: var(--font-body);
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    outline: none;
+    background: transparent;
+    cursor: pointer;
+    color: var(--black);
+  }
+
+  .view-toggle {
+    display: flex;
+    gap: 8px;
+  }
+  .view-btn {
+    padding: 7px 12px;
+    border: 1px solid #ddd;
+    background: transparent;
+    cursor: pointer;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+    transition: all 0.2s;
+    font-family: var(--font-body);
+  }
+  .view-btn.active { background: var(--black); color: var(--white); border-color: var(--black); }
+
+  .boutique-products {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+  }
+
+  /* ===== FOOTER ===== */
+  footer {
+    background: var(--black);
+    color: var(--white);
+    padding: 70px 80px 30px;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 50px;
+    margin-bottom: 60px;
+  }
+
+  .footer-col-title {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    color: var(--white);
+  }
+
+  .footer-col ul li {
+    margin-bottom: 10px;
+  }
+
+  .footer-col ul li a {
+    font-size: 11px;
+    color: var(--grey-mid);
+    letter-spacing: 0.04em;
+    transition: color 0.2s;
+    line-height: 1.7;
+  }
+  .footer-col ul li a:hover { color: var(--white); }
+
+  .footer-col p {
+    font-size: 11px;
+    color: var(--grey-mid);
+    line-height: 1.9;
+    letter-spacing: 0.03em;
+  }
+
+  .footer-col p strong { color: var(--white); }
+
+  .footer-newsletter-input {
+    display: flex;
+    border: 1px solid rgba(255,255,255,0.25);
+    margin-top: 16px;
+  }
+
+  .footer-newsletter-input input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    padding: 10px 14px;
+    color: var(--white);
+    font-family: var(--font-body);
+    font-size: 11px;
+    outline: none;
+  }
+  .footer-newsletter-input input::placeholder { color: rgba(255,255,255,0.4); }
+
+  .footer-newsletter-input button {
+    background: var(--white);
+    color: var(--black);
+    border: none;
+    padding: 10px 16px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-family: var(--font-body);
+  }
+
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.12);
+    padding-top: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .footer-bottom-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .footer-bottom-links a {
+    font-size: 10px;
+    color: rgba(255,255,255,0.45);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .footer-bottom-links a:hover { color: var(--white); }
+
+  .footer-copy {
+    font-size: 10px;
+    color: rgba(255,255,255,0.35);
+    letter-spacing: 0.08em;
+  }
+
+  /* ===== WHATSAPP FLOAT ===== */
+  .whatsapp-btn {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 999;
+    width: 52px;
+    height: 52px;
+    background: #25d366;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+  }
+  .whatsapp-btn:hover { transform: scale(1.08); box-shadow: 0 6px 28px rgba(0,0,0,0.3); }
+  .whatsapp-btn svg { width: 26px; height: 26px; fill: white; }
+
+  /* ===== MOBILE ===== */
+  @media (max-width: 1024px) {
+    .products-grid { grid-template-columns: repeat(2, 1fr); }
+    .boutique-products { grid-template-columns: repeat(2, 1fr); }
+    .collection-announce { grid-template-columns: 1fr; padding: 40px; }
+    .about-strip { grid-template-columns: 1fr; }
+    .about-image { height: 300px; }
+    .about-text { padding: 50px 40px; }
+    .footer-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 768px) {
+    .header-top { padding: 0 16px; height: 60px; }
+    nav { padding: 0 16px; }
+    .section { padding: 40px 16px; }
+    .boutique-layout { grid-template-columns: 1fr; }
+    .filters-sidebar { display: none; }
+    .boutique-grid-wrap { padding: 20px 16px; }
+    .hero-content { padding: 0 24px; }
+    .hero { min-height: 480px; height: 80vh; }
+    .hero-title { font-size: 56px; }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 30px; }
+    footer { padding: 40px 20px 20px; }
+    .collection-announce { padding: 30px 20px; gap: 24px; }
+    .collection-announce-img { height: 320px; }
+    .about-text { padding: 40px 24px; }
+    .about-text h2 { font-size: 30px; }
+    .newsletter h2 { font-size: 30px; }
+    .newsletter { padding: 50px 20px; }
+    .boutique-header { padding: 30px 16px 20px; }
+    .boutique-title { font-size: 30px; }
+    .section-title { font-size: 28px; }
+    .footer-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ===== LOADING SHIMMER ===== */
+  .shimmer {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e8e8e8 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+    border-radius: 2px;
+  }
+  @keyframes shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+
+  /* Color swatches */
+  .color-swatches {
+    display: flex;
+    gap: 6px;
+    padding: 0 16px 14px;
+    background: var(--white);
+  }
+  .swatch {
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    border: 1px solid rgba(0,0,0,0.1);
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+  .swatch:hover { transform: scale(1.2); }
+
+  /* Favorite btn */
+  .fav-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 3;
+    width: 32px; height: 32px;
+    background: var(--white);
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.2s;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  }
+  .product-card:hover .fav-btn { opacity: 1; }
+  .fav-btn svg { width: 15px; height: 15px; }
+</style>
+</head>
+<body>
+
+<!-- Announcement bar -->
+<div class="announcement-bar">
+  <a href="#boutique" onclick="showPage('boutique')">COMMANDEZ VOS ARTICLES MAINTENANT ET PAYEZ À LA LIVRAISON.</a>
+</div>
+
+<!-- HEADER -->
+<header>
+  <div class="header-top">
+    <div class="header-actions-left">
+      <div class="search-bar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+        <input type="text" placeholder="Rechercher...">
+      </div>
+    </div>
+
+    <div class="logo">
+      <a href="#" onclick="showPage('home')">
+        <span class="logo-text"><em>dönt</em> <span>lie.</span></span>
+      </a>
+    </div>
+
+    <div class="header-actions-right">
+      <a href="#" class="header-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <span>Compte</span>
+      </a>
+      <a href="#" class="header-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        <span>Favoris</span>
+      </a>
+      <a href="#" class="header-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <span>Panier</span>
+        <div class="cart-count">0</div>
+      </a>
+    </div>
+  </div>
+
+  <nav>
+    <ul>
+      <li class="special"><a href="#">Special Prices</a></li>
+      <li><a href="#" onclick="showPage('boutique')">Nouveautés</a></li>
+      <li><a href="#" onclick="showPage('boutique')">Homme</a></li>
+      <li><a href="#" onclick="showPage('boutique')">Femme</a></li>
+      <li><a href="#" onclick="showPage('boutique')">T.Shirts</a></li>
+      <li><a href="#" onclick="showPage('boutique')">Casquettes</a></li>
+      <li><a href="#" onclick="showPage('boutique')">Pantalons</a></li>
+      <li><a href="#" onclick="showPage('boutique')">Hoodies</a></li>
+      <li><a href="#" onclick="showPage('boutique')">Souliers</a></li>
+      <li><a href="#" onclick="showPage('boutique')">Jogging</a></li>
+      <li><a href="#" onclick="showPage('boutique')">Accessoires</a></li>
+      <li><a href="#" onclick="showPage('boutique')">Chemises</a></li>
+      <li><a href="#" onclick="showPage('boutique')">Débardeurs</a></li>
+      <li><a href="#" onclick="showPage('boutique')">Polos</a></li>
+      <li><a href="#" onclick="showPage('boutique')">Collections</a></li>
+      <li><a href="#" onclick="showPage('boutique')">Éditions Limitées</a></li>
+      <li><a href="#">Nous Contacter</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- ===== HOME PAGE ===== -->
+<main>
+<div id="page-home" class="page active">
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-image-placeholder"></div>
+    <div class="hero-content">
+      <div class="hero-label">Model 001 · Collection Heritage</div>
+      <h1 class="hero-title">dönt<br><em>lie.</em></h1>
+      <p class="hero-sub">C'est ce qui reste quand on enlève les filtres, les masques et les poses. Dans chaque détail, chaque coupe, chaque choix — la transparence.</p>
+      <a class="hero-cta" href="#" onclick="showPage('boutique')">
+        Voir la boutique
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+    <div class="hero-scroll">
+      <div class="hero-scroll-line"></div>
+      <span>Défiler</span>
+    </div>
+  </section>
+
+  <!-- Collection announce -->
+  <section class="collection-announce">
+    <div class="collection-announce-img"></div>
+    <div class="collection-announce-text">
+      <div class="tag">Collection Heritage · 07 juillet 2026</div>
+      <h2>Modèle 004<br>Heritage</h2>
+      <p>Nous vous dévoilons le modèle 004, première création de la Collection Heritage. Une casquette au design minimaliste, disponible en 3 couleurs.</p>
+      <p>La Collection Heritage sera disponible le <strong style="color:#fff">07 juillet 2026</strong>.</p>
+      <a class="btn-outline-white" href="#">
+        Découvrir
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- Featured Products -->
+  <section class="section">
+    <div class="section-header">
+      <h2 class="section-title">Pièces Sélectionnées</h2>
+      <a href="#" class="section-link" onclick="showPage('boutique')">Voir toute la boutique →</a>
+    </div>
+    <div class="products-grid" id="featured-grid"></div>
+  </section>
+
+  <!-- About -->
+  <section class="about-strip">
+    <div class="about-image"></div>
+    <div class="about-text">
+      <div class="eyebrow">Maison Béninoise</div>
+      <h2>dönt lie.<br>La vérité<br>sans filtre.</h2>
+      <p>Derrière cette maison, une équipe passionnée conjugue créativité, précision et exigence pour donner naissance à des pièces très esthétiques, conçues au Bénin.</p>
+      <a class="btn-outline-white" href="#">Découvrir notre maison</a>
+    </div>
+  </section>
+
+  <!-- Newsletter -->
+  <section class="newsletter">
+    <div class="newsletter-eyebrow">Newsletter</div>
+    <h2>Trouvez la vérité</h2>
+    <p>Inscrivez-vous à notre newsletter pour être informé(e). En signe de bienvenue, nous vous offrons <strong>10% de réduction</strong> sur votre prochaine commande.</p>
+    <div class="newsletter-form">
+      <input type="email" placeholder="Votre adresse e-mail">
+      <button>S'inscrire</button>
+    </div>
+  </section>
+
+</div>
+
+<!-- ===== BOUTIQUE PAGE ===== -->
+<div id="page-boutique" class="page">
+
+  <div class="boutique-header">
+    <div class="boutique-breadcrumb">
+      <a href="#" onclick="showPage('home')">Accueil</a> / <span>Toute la boutique</span>
+    </div>
+    <h1 class="boutique-title">La Boutique</h1>
+    <p class="boutique-count">20 produits</p>
+  </div>
+
+  <div class="boutique-layout">
+    <!-- Sidebar -->
+    <aside class="filters-sidebar">
+      <div class="filter-group">
+        <div class="filter-title open" onclick="toggleFilter(this)">
+          Catégories
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="filter-options">
+          <label class="filter-option"><input type="checkbox"> T.Shirts</label>
+          <label class="filter-option"><input type="checkbox"> Pantalons</label>
+          <label class="filter-option"><input type="checkbox"> Hoodies</label>
+          <label class="filter-option"><input type="checkbox"> Souliers</label>
+          <label class="filter-option"><input type="checkbox"> Accessoires</label>
+          <label class="filter-option"><input type="checkbox"> Jogging</label>
+          <label class="filter-option"><input type="checkbox"> Chemises</label>
+          <label class="filter-option"><input type="checkbox"> Casquettes</label>
+          <label class="filter-option"><input type="checkbox"> Éditions Limitées</label>
+        </div>
+      </div>
+      <div class="filter-group">
+        <div class="filter-title open" onclick="toggleFilter(this)">
+          Disponibilité
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="filter-options">
+          <label class="filter-option"><input type="checkbox" checked> En stock</label>
+          <label class="filter-option"><input type="checkbox"> Stock épuisé</label>
+        </div>
+      </div>
+      <div class="filter-group">
+        <div class="filter-title open" onclick="toggleFilter(this)">
+          Prix
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="filter-options">
+          <label class="filter-option"><input type="checkbox"> Moins de 10 000 CFA</label>
+          <label class="filter-option"><input type="checkbox"> 10 000 – 25 000 CFA</label>
+          <label class="filter-option"><input type="checkbox"> 25 000 – 50 000 CFA</label>
+          <label class="filter-option"><input type="checkbox"> Plus de 50 000 CFA</label>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Grid -->
+    <div class="boutique-grid-wrap">
+      <div class="boutique-toolbar">
+        <span style="font-size:11px;color:var(--grey-dark)">20 produits</span>
+        <div style="display:flex;align-items:center;gap:16px">
+          <select class="sort-select">
+            <option>Trier par : Nouveautés</option>
+            <option>Prix croissant</option>
+            <option>Prix décroissant</option>
+            <option>Popularité</option>
+          </select>
+          <div class="view-toggle">
+            <button class="view-btn active">⊞</button>
+            <button class="view-btn">☰</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="boutique-products" id="boutique-grid"></div>
+    </div>
+  </div>
+
+</div>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-col">
+      <div class="footer-col-title">Aide</div>
+      <p>Service Client disponible 7j/7 au <strong>+229 0196050403</strong>, par WhatsApp ou par e-mail.</p>
+      <ul style="margin-top:16px">
+        <li><a href="#">FAQ</a></li>
+        <li><a href="#">Où nous trouver</a></li>
+        <li><a href="#">Travailler avec nous</a></li>
+        <li><a href="#">Suivre une commande</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Services</div>
+      <ul>
+        <li><a href="#">Personnalisation</a></li>
+        <li><a href="#">Plaisir d'offrir</a></li>
+        <li><a href="#">Sur mesure</a></li>
+        <li><a href="#">Réservez en boutique</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">À Propos</div>
+      <ul>
+        <li><a href="#">Collections</a></li>
+        <li><a href="#">Nouveautés</a></li>
+        <li><a href="#">Mentions Légales</a></li>
+        <li><a href="#">Politique de Confidentialité</a></li>
+      </ul>
+      <div style="margin-top:24px">
+        <div class="footer-col-title">Suivez-nous</div>
+        <ul>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">Facebook</a></li>
+          <li><a href="#">TikTok</a></li>
+          <li><a href="#">Pinterest</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-col">
+      <div class="footer-col-title">Newsletter</div>
+      <p>Souscrivez à la Newsletter pour recevoir <strong>10% de réduction</strong> et des actualités exclusives.</p>
+      <div class="footer-newsletter-input">
+        <input type="email" placeholder="Votre e-mail">
+        <button>OK</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="footer-bottom-links">
+      <a href="#">Cadeaux & Personnalisation</a>
+      <a href="#">Nouveautés</a>
+      <a href="#">Edition Limitée</a>
+      <a href="#">Mode Homme</a>
+      <a href="#">Mode Femme</a>
+      <a href="#">Livraison et Retours</a>
+      <a href="#">Suivre ma Commande</a>
+    </div>
+    <span class="footer-copy">© 2020 dönt lie.</span>
+  </div>
+</footer>
+
+<!-- WhatsApp Float -->
+<a href="https://wa.me/22996050403" class="whatsapp-btn" target="_blank" title="Contactez-nous sur WhatsApp">
+  <svg viewBox="0 0 32 32"><path d="M16.004 0C7.164 0 0 7.163 0 16a15.94 15.94 0 0 0 2.195 8.124L.076 31.804l7.877-2.065A15.935 15.935 0 0 0 16.004 32C24.838 32 32 24.836 32 16S24.838 0 16.004 0zm0 29.292a13.24 13.24 0 0 1-6.747-1.843l-.483-.286-5.012 1.316 1.336-4.878-.316-.5A13.237 13.237 0 0 1 2.709 16c0-7.335 5.96-13.293 13.295-13.293C23.34 2.707 29.293 8.664 29.293 16c0 7.335-5.96 13.292-13.289 13.292zm7.284-9.948c-.398-.2-2.358-1.163-2.724-1.296-.365-.133-.632-.2-.897.199-.266.4-1.03 1.296-1.263 1.562-.232.266-.465.3-.863.1-.398-.2-1.68-.619-3.2-1.977-1.184-1.056-1.984-2.36-2.216-2.758-.232-.4-.025-.615.174-.814.18-.178.398-.465.597-.698.2-.232.265-.398.398-.664.133-.265.066-.498-.033-.698-.1-.2-.898-2.163-1.23-2.96-.324-.777-.652-.672-.897-.685l-.764-.013a1.467 1.467 0 0 0-1.063.498c-.365.4-1.396 1.363-1.396 3.327 0 1.963 1.43 3.86 1.628 4.126.2.266 2.814 4.294 6.818 6.02.954.412 1.697.658 2.277.843.957.305 1.827.262 2.516.16.768-.116 2.358-.965 2.69-1.896.332-.93.332-1.728.233-1.895-.1-.166-.365-.266-.764-.465z"/></svg>
+</a>
+
+<!-- ===== CART DRAWER ===== -->
+<div id="cart-overlay" class="drawer-overlay" onclick="closeCart()"></div>
+<div id="cart-drawer" class="cart-drawer">
+  <div class="drawer-header">
+    <span class="drawer-title">Votre Panier</span>
+    <button class="drawer-close" onclick="closeCart()">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  </div>
+  <div class="cart-body">
+    <div class="cart-empty">
+      <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#ccc" stroke-width="1"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+      <p>Votre panier est vide.</p>
+      <button class="btn-black" onclick="closeCart();showPage('boutique')">Voir la boutique</button>
+    </div>
+    <div id="cart-items" class="cart-items" style="display:none"></div>
+  </div>
+  <div class="cart-footer" id="cart-footer" style="display:none">
+    <div class="cart-subtotal">
+      <span>Sous-total</span>
+      <span id="cart-total-display">0 CFA</span>
+    </div>
+    <p class="cart-note">Livraison calculée à la commande · Paiement à la livraison disponible</p>
+    <button class="btn-black full" onclick="showToast('Redirection vers le paiement...')">Commander →</button>
+    <button class="btn-outline full" onclick="closeCart();showPage('boutique')">Continuer mes achats</button>
+  </div>
+</div>
+
+<!-- ===== MOBILE MENU DRAWER ===== -->
+<div id="menu-overlay" class="drawer-overlay" onclick="closeMenu()"></div>
+<div id="mobile-menu" class="mobile-menu">
+  <div class="drawer-header">
+    <span class="logo-text" style="font-size:20px"><em>dönt</em> lie.</span>
+    <button class="drawer-close" onclick="closeMenu()">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  </div>
+  <nav class="mobile-nav">
+    <a class="mobile-nav-link special" href="#" onclick="closeMenu()">🔥 Special Prices</a>
+    <a class="mobile-nav-link" href="#" onclick="closeMenu();showPage('boutique')">Nouveautés</a>
+    <a class="mobile-nav-link" href="#" onclick="closeMenu();showPage('boutique')">Homme</a>
+    <a class="mobile-nav-link" href="#" onclick="closeMenu();showPage('boutique')">Femme</a>
+    <a class="mobile-nav-link" href="#" onclick="closeMenu();showPage('boutique')">T.Shirts</a>
+    <a class="mobile-nav-link" href="#" onclick="closeMenu();showPage('boutique')">Casquettes</a>
+    <a class="mobile-nav-link" href="#" onclick="closeMenu();showPage('boutique')">Pantalons</a>
+    <a class="mobile-nav-link" href="#" onclick="closeMenu();showPage('boutique')">Hoodies</a>
+    <a class="mobile-nav-link" href="#" onclick="closeMenu();showPage('boutique')">Souliers</a>
+    <a class="mobile-nav-link" href="#" onclick="closeMenu();showPage('boutique')">Jogging</a>
+    <a class="mobile-nav-link" href="#" onclick="closeMenu();showPage('boutique')">Accessoires</a>
+    <a class="mobile-nav-link" href="#" onclick="closeMenu();showPage('boutique')">Chemises</a>
+    <a class="mobile-nav-link" href="#" onclick="closeMenu();showPage('boutique')">Débardeurs</a>
+    <a class="mobile-nav-link" href="#" onclick="closeMenu();showPage('boutique')">Collections</a>
+    <a class="mobile-nav-link" href="#" onclick="closeMenu();showPage('boutique')">Éditions Limitées</a>
+    <div class="mobile-nav-divider"></div>
+    <a class="mobile-nav-link" href="#">Nous Contacter</a>
+    <a class="mobile-nav-link" href="#">Mon Compte</a>
+    <a class="mobile-nav-link" href="#">FAQ</a>
+  </nav>
+  <div class="mobile-menu-footer">
+    <div style="display:flex;gap:20px;justify-content:center;padding-top:16px">
+      <a href="https://www.instagram.com/bj.dontlie" target="_blank" class="social-link">Instagram</a>
+      <a href="#" class="social-link">Facebook</a>
+      <a href="#" class="social-link">TikTok</a>
+    </div>
+  </div>
+</div>
+
+<!-- ===== PRODUCT PAGE ===== -->
+<div id="page-product" class="page" style="display:none">
+  <div class="product-page-wrap">
+    <div class="product-page-breadcrumb">
+      <a href="#" onclick="showPage('home')">Accueil</a> /
+      <a href="#" onclick="showPage('boutique')">Boutique</a> /
+      <span id="pp-breadcrumb-name">—</span>
+    </div>
+    <div class="product-page-grid">
+      <div class="product-page-gallery">
+        <div class="product-page-main-img">
+          <img id="pp-main-img" src="" alt="">
+        </div>
+        <div class="product-page-thumbs" id="pp-thumbs"></div>
+      </div>
+      <div class="product-page-info">
+        <div id="pp-badge-wrap"></div>
+        <h1 class="product-page-name" id="pp-name"></h1>
+        <div class="product-page-price" id="pp-price"></div>
+        <div class="product-page-divider"></div>
+        <div class="product-page-section-label">Couleur</div>
+        <div class="product-page-swatches" id="pp-swatches"></div>
+        <div class="product-page-section-label" style="margin-top:20px">Taille</div>
+        <div class="size-grid" id="pp-sizes">
+          <button class="size-btn">XS</button>
+          <button class="size-btn active">S</button>
+          <button class="size-btn">M</button>
+          <button class="size-btn">L</button>
+          <button class="size-btn">XL</button>
+          <button class="size-btn">XXL</button>
+        </div>
+        <div class="product-page-divider"></div>
+        <div class="product-page-qty">
+          <div class="product-page-section-label">Quantité</div>
+          <div class="qty-control">
+            <button class="qty-btn" onclick="changeQty(-1)">−</button>
+            <span id="qty-display">1</span>
+            <button class="qty-btn" onclick="changeQty(1)">+</button>
+          </div>
+        </div>
+        <button class="btn-black full" style="margin-top:24px;padding:16px" onclick="addToCart()">
+          Ajouter au panier
+        </button>
+        <button class="btn-outline full" style="margin-top:10px;padding:16px" onclick="showToast('Ajouté aux favoris ♡')">
+          ♡ Ajouter aux favoris
+        </button>
+        <div class="product-page-divider"></div>
+        <div class="product-page-accordion">
+          <div class="accordion-item">
+            <div class="accordion-head" onclick="toggleAccordion(this)">
+              Description
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+            <div class="accordion-body">
+              <p>Pièce de qualité supérieure, conçue avec soin par la maison béninoise dönt lie. Chaque détail est pensé pour allier style minimaliste et confort au quotidien.</p>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <div class="accordion-head" onclick="toggleAccordion(this)">
+              Livraison & Retours
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+            <div class="accordion-body" style="display:none">
+              <p>Livraison disponible à Cotonou et dans tout le Bénin. Paiement à la livraison accepté. Retours possibles sous 7 jours.</p>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <div class="accordion-head" onclick="toggleAccordion(this)">
+              Entretien
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+            <div class="accordion-body" style="display:none">
+              <p>Lavage à la main recommandé. Ne pas sécher en machine. Repassage à basse température.</p>
+            </div>
+          </div>
+        </div>
+        <div class="product-page-share">
+          <span>Partager :</span>
+          <a href="#" onclick="showToast('Lien copié !')">Copier le lien</a>
+          <a href="#" target="_blank">WhatsApp</a>
+        </div>
+      </div>
+    </div>
+    <!-- Related products -->
+    <div class="section" style="padding-top:60px">
+      <div class="section-header">
+        <h2 class="section-title">Vous aimerez aussi</h2>
+        <a href="#" class="section-link" onclick="showPage('boutique')">Voir tout →</a>
+      </div>
+      <div class="products-grid" id="related-grid"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== TOAST ===== -->
+<div id="toast" class="toast"></div>
+
+<style>
+/* ===== DRAWERS ===== */
+.drawer-overlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.45);
+  z-index: 1100;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.3s;
+}
+.drawer-overlay.open { opacity: 1; pointer-events: all; }
+
+.cart-drawer, .mobile-menu {
+  position: fixed; top: 0; right: 0;
+  width: 400px; max-width: 95vw;
+  height: 100vh;
+  background: var(--white);
+  z-index: 1200;
+  display: flex; flex-direction: column;
+  transform: translateX(100%);
+  transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+  box-shadow: -8px 0 40px rgba(0,0,0,0.12);
+}
+.mobile-menu { left: 0; right: auto; transform: translateX(-100%); width: 320px; }
+.cart-drawer.open, .mobile-menu.open { transform: translateX(0); }
+
+.drawer-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 20px 24px;
+  border-bottom: 1px solid #e8e8e8;
+  flex-shrink: 0;
+}
+.drawer-title {
+  font-size: 12px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase;
+}
+.drawer-close {
+  background: none; border: none; cursor: pointer; padding: 4px;
+  color: var(--black); transition: opacity 0.2s;
+}
+.drawer-close:hover { opacity: 0.5; }
+
+.cart-body { flex: 1; overflow-y: auto; padding: 24px; }
+.cart-empty {
+  display: flex; flex-direction: column; align-items: center;
+  justify-content: center; gap: 16px; height: 100%;
+  text-align: center; color: var(--grey-dark);
+}
+.cart-empty p { font-size: 12px; letter-spacing: 0.05em; }
+
+.cart-items { display: flex; flex-direction: column; gap: 20px; }
+.cart-item {
+  display: grid; grid-template-columns: 80px 1fr auto;
+  gap: 14px; align-items: start;
+}
+.cart-item-img { width: 80px; height: 110px; object-fit: cover; background: #f0f0f0; }
+.cart-item-name { font-size: 11px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 6px; }
+.cart-item-variant { font-size: 10px; color: var(--grey-dark); margin-bottom: 10px; }
+.cart-item-qty { display: flex; align-items: center; gap: 10px; font-size: 12px; }
+.cart-item-qty button { background: none; border: 1px solid #ddd; width: 24px; height: 24px; cursor: pointer; font-size: 14px; display: flex; align-items: center; justify-content: center; }
+.cart-item-price { font-size: 13px; font-weight: 600; white-space: nowrap; }
+.cart-item-remove { background: none; border: none; cursor: pointer; color: #bbb; font-size: 18px; padding: 0; line-height: 1; }
+.cart-item-remove:hover { color: var(--black); }
+
+.cart-footer {
+  padding: 20px 24px 24px;
+  border-top: 1px solid #e8e8e8;
+  flex-shrink: 0;
+  background: var(--white);
+}
+.cart-subtotal {
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 14px; font-weight: 600; margin-bottom: 10px;
+}
+.cart-note { font-size: 10px; color: var(--grey-dark); letter-spacing: 0.04em; margin-bottom: 16px; line-height: 1.6; }
+
+.btn-black {
+  background: var(--black); color: var(--white); border: none;
+  padding: 13px 28px; font-family: var(--font-body);
+  font-size: 10px; font-weight: 700; letter-spacing: 0.15em;
+  text-transform: uppercase; cursor: pointer; transition: background 0.2s;
+}
+.btn-black:hover { background: #333; }
+.btn-black.full, .btn-outline.full { width: 100%; text-align: center; display: block; margin-bottom: 0; }
+.btn-outline {
+  background: transparent; color: var(--black);
+  border: 1px solid var(--black); padding: 13px 28px;
+  font-family: var(--font-body); font-size: 10px; font-weight: 700;
+  letter-spacing: 0.15em; text-transform: uppercase; cursor: pointer;
+  transition: all 0.2s; margin-top: 10px;
+}
+.btn-outline:hover { background: var(--black); color: var(--white); }
+
+/* ===== MOBILE MENU ===== */
+.mobile-nav { flex: 1; overflow-y: auto; display: flex; flex-direction: column; }
+.mobile-nav-link {
+  display: block; padding: 16px 24px;
+  font-size: 11px; font-weight: 600; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--black);
+  border-bottom: 1px solid #f0f0f0;
+  transition: background 0.15s, padding-left 0.2s;
+}
+.mobile-nav-link:hover { background: #f8f8f8; padding-left: 32px; }
+.mobile-nav-link.special { color: #c0392b; }
+.mobile-nav-divider { height: 8px; background: #f4f4f4; }
+.mobile-menu-footer { padding: 20px 24px; border-top: 1px solid #e8e8e8; }
+.social-link { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--grey-dark); }
+.social-link:hover { color: var(--black); }
+
+/* Mobile hamburger */
+.menu-ham {
+  display: none;
+  background: none; border: none; cursor: pointer;
+  flex-direction: column; gap: 5px; padding: 4px;
+}
+.menu-ham span { display: block; width: 22px; height: 1.5px; background: var(--black); transition: all 0.3s; }
+@media (max-width: 768px) {
+  .menu-ham { display: flex; }
+  nav { display: none; }
+}
+
+/* ===== PRODUCT PAGE ===== */
+.product-page-wrap { padding: 0 40px 80px; max-width: 1400px; margin: 0 auto; }
+.product-page-breadcrumb {
+  padding: 20px 0;
+  font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--grey-dark);
+}
+.product-page-breadcrumb a { color: var(--grey-dark); }
+.product-page-breadcrumb a:hover { color: var(--black); }
+
+.product-page-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 60px;
+  align-items: start; padding-top: 10px;
+}
+@media (max-width: 900px) {
+  .product-page-grid { grid-template-columns: 1fr; }
+  .product-page-wrap { padding: 0 20px 60px; }
+}
+
+.product-page-main-img {
+  width: 100%; aspect-ratio: 3/4; overflow: hidden; background: var(--grey-light);
+  margin-bottom: 8px;
+}
+.product-page-main-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+.product-page-main-img:hover img { transform: scale(1.03); }
+
+.product-page-thumbs { display: flex; gap: 8px; flex-wrap: wrap; }
+.product-thumb {
+  width: 70px; height: 95px; object-fit: cover; cursor: pointer;
+  border: 2px solid transparent; transition: border-color 0.2s; background: var(--grey-light);
+}
+.product-thumb.active { border-color: var(--black); }
+
+.product-page-info { position: sticky; top: 90px; }
+.product-page-name {
+  font-family: var(--font-display); font-size: 36px; font-weight: 400;
+  letter-spacing: 0.02em; margin: 8px 0 16px; font-style: italic;
+}
+.product-page-price {
+  font-size: 20px; font-weight: 600; margin-bottom: 4px;
+}
+.product-page-price .old { font-size: 14px; color: #aaa; text-decoration: line-through; margin-left: 10px; font-weight: 400; }
+.product-page-divider { height: 1px; background: #e8e8e8; margin: 22px 0; }
+.product-page-section-label {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.18em;
+  text-transform: uppercase; margin-bottom: 12px; color: var(--grey-dark);
+}
+.product-page-swatches { display: flex; gap: 10px; flex-wrap: wrap; }
+.product-page-swatch {
+  width: 26px; height: 26px; border-radius: 50%;
+  border: 2px solid transparent; cursor: pointer; transition: all 0.2s;
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.12);
+}
+.product-page-swatch:hover, .product-page-swatch.active { border-color: var(--black); transform: scale(1.1); }
+
+.size-grid { display: flex; gap: 8px; flex-wrap: wrap; }
+.size-btn {
+  border: 1px solid #ddd; background: transparent; padding: 8px 14px;
+  font-family: var(--font-body); font-size: 11px; font-weight: 600;
+  letter-spacing: 0.08em; cursor: pointer; transition: all 0.2s;
+}
+.size-btn:hover { border-color: var(--black); }
+.size-btn.active { background: var(--black); color: var(--white); border-color: var(--black); }
+.size-btn.unavailable { color: #ccc; border-color: #eee; text-decoration: line-through; cursor: not-allowed; }
+
+.product-page-qty { display: flex; align-items: center; gap: 20px; }
+.qty-control { display: flex; align-items: center; border: 1px solid #ddd; }
+.qty-btn {
+  background: none; border: none; width: 38px; height: 38px;
+  font-size: 18px; cursor: pointer; transition: background 0.2s; font-family: var(--font-body);
+}
+.qty-btn:hover { background: var(--grey-light); }
+#qty-display { min-width: 40px; text-align: center; font-size: 14px; font-weight: 600; }
+
+/* Accordion */
+.accordion-item { border-bottom: 1px solid #e8e8e8; }
+.accordion-head {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 16px 0; font-size: 11px; font-weight: 700; letter-spacing: 0.12em;
+  text-transform: uppercase; cursor: pointer; transition: color 0.2s;
+}
+.accordion-head:hover { color: var(--grey-dark); }
+.accordion-head.open svg { transform: rotate(180deg); }
+.accordion-head svg { transition: transform 0.2s; }
+.accordion-body { padding: 0 0 16px; font-size: 12px; line-height: 1.8; color: var(--grey-dark); }
+
+.product-page-share {
+  display: flex; align-items: center; gap: 16px;
+  margin-top: 24px; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--grey-dark);
+}
+.product-page-share a { color: var(--black); font-weight: 600; border-bottom: 1px solid; padding-bottom: 1px; }
+
+/* ===== TOAST ===== */
+.toast {
+  position: fixed; bottom: 90px; left: 50%; transform: translateX(-50%) translateY(20px);
+  background: var(--black); color: var(--white);
+  padding: 12px 28px; font-size: 11px; font-weight: 600; letter-spacing: 0.1em;
+  text-transform: uppercase; border-radius: 2px;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.3s, transform 0.3s;
+  z-index: 9999; white-space: nowrap;
+}
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+/* Badge in product page */
+#pp-badge-wrap .product-badge { display: inline-block; margin-bottom: 12px; }
+</style>
+
+<script>
+  // ===== PRODUCT DATA =====
+  const products = [
+    {
+      name: "Chevalière / Bague (2pcs)",
+      price: "5 000 CFA",
+      oldPrice: null,
+      badge: "available",
+      badgeLabel: "disponible",
+      img: "https://i0.wp.com/dont-lie.com/wp-content/uploads/2026/02/bague-122.jpg?fit=400%2C560&ssl=1",
+      swatches: ["#c0a060","#888"]
+    },
+    {
+      name: "Chevalière / Bague",
+      price: "3 500 CFA",
+      oldPrice: null,
+      badge: null,
+      img: "https://i0.wp.com/dont-lie.com/wp-content/uploads/2026/02/bague-2_1.jpg?fit=400%2C560&ssl=1",
+      swatches: ["#c0a060"]
+    },
+    {
+      name: "T.shirt avec poche",
+      price: "15 000 CFA",
+      oldPrice: null,
+      badge: "new",
+      badgeLabel: "nouveauté",
+      img: "https://i0.wp.com/dont-lie.com/wp-content/uploads/2025/11/VERT-CLAIRE.webp?fit=400%2C560&ssl=1",
+      swatches: ["#a8c080","#8b5e3c"]
+    },
+    {
+      name: "T.shirt avec poche",
+      price: "15 000 CFA",
+      oldPrice: null,
+      badge: "new",
+      badgeLabel: "nouveauté",
+      img: "https://i0.wp.com/dont-lie.com/wp-content/uploads/2025/11/TSHIRT-MARRON.webp?fit=400%2C560&ssl=1",
+      swatches: ["#8b5e3c","#fff"]
+    },
+    {
+      name: "MOCASSIN VAN DOE",
+      price: "85 000 CFA",
+      oldPrice: null,
+      badge: null,
+      img: "https://i0.wp.com/dont-lie.com/wp-content/uploads/2025/10/CHAUSSURE-1-1-scaled.webp?fit=400%2C500&ssl=1",
+      swatches: ["#1a1a1a","#c0a060"]
+    },
+    {
+      name: "T.shirt x Ageenn",
+      price: "25 000 CFA",
+      oldPrice: "30 000 CFA",
+      badge: "out",
+      badgeLabel: "stock out",
+      img: "https://i0.wp.com/dont-lie.com/wp-content/uploads/2025/07/tshirt-dont-lie-6-1.webp?fit=400%2C560&ssl=1",
+      swatches: ["#1a1a1a","#fff"]
+    },
+    {
+      name: "T.shirt x Ageenn",
+      price: "25 000 CFA",
+      oldPrice: "30 000 CFA",
+      badge: null,
+      img: "https://i0.wp.com/dont-lie.com/wp-content/uploads/2025/09/tshirt-dont-lie-11.webp?fit=400%2C560&ssl=1",
+      swatches: ["#1a1a1a","#c0a060"]
+    },
+    {
+      name: "T.shirt Just Truth",
+      price: "25 000 CFA",
+      oldPrice: null,
+      badge: "new",
+      badgeLabel: "nouveauté",
+      img: "https://i0.wp.com/dont-lie.com/wp-content/uploads/2025/09/tshirt-dont-lie-1.webp?fit=400%2C560&ssl=1",
+      swatches: ["#2a2a2a","#fff","#888"]
+    },
+    {
+      name: "T.shirt Just Truth",
+      price: "25 000 CFA",
+      oldPrice: null,
+      badge: "new",
+      badgeLabel: "nouveauté",
+      img: "https://i0.wp.com/dont-lie.com/wp-content/uploads/2025/09/tshirt-dont-lie-3.webp?fit=400%2C560&ssl=1",
+      swatches: ["#d0c8b0","#2a2a2a"]
+    },
+    {
+      name: "T.shirt Just Truth",
+      price: "25 000 CFA",
+      oldPrice: null,
+      badge: "new",
+      badgeLabel: "nouveauté",
+      img: "https://i0.wp.com/dont-lie.com/wp-content/uploads/2025/09/tshirt-dont-lie-4.webp?fit=400%2C560&ssl=1",
+      swatches: ["#b0b8c8","#2a2a2a"]
+    },
+    {
+      name: "HOODIE COL ROND",
+      price: "35 000 CFA",
+      oldPrice: null,
+      badge: null,
+      img: "https://i0.wp.com/dont-lie.com/wp-content/uploads/2025/07/tshirt-dont-lie-35.webp?fit=400%2C560&ssl=1",
+      swatches: ["#c8c0b0","#1a1a1a","#5a6a7a"]
+    },
+    {
+      name: "T.shirt Brodé",
+      price: "22 000 CFA",
+      oldPrice: null,
+      badge: null,
+      img: "https://i0.wp.com/dont-lie.com/wp-content/uploads/2025/07/tshirt-dont-lie-31.webp?fit=400%2C560&ssl=1",
+      swatches: ["#fff","#1a1a1a"]
+    },
+    {
+      name: "CHAUSSETTES",
+      price: "3 500 CFA",
+      oldPrice: null,
+      badge: null,
+      img: "https://i0.wp.com/dont-lie.com/wp-content/uploads/2025/07/tshirt-dont-lie-24.webp?fit=400%2C560&ssl=1",
+      swatches: ["#fff","#1a1a1a","#888"]
+    },
+    {
+      name: "PACK 3 - CHAUSSETTE",
+      price: "9 000 CFA",
+      oldPrice: null,
+      badge: null,
+      img: "https://i0.wp.com/dont-lie.com/wp-content/uploads/2025/07/tshirt-dont-lie-22.webp?fit=400%2C560&ssl=1",
+      swatches: ["#fff","#1a1a1a","#c0a060"]
+    },
+    {
+      name: "PACK 2 - CHAUSSETTE",
+      price: "6 500 CFA",
+      oldPrice: null,
+      badge: null,
+      img: "https://i0.wp.com/dont-lie.com/wp-content/uploads/2025/07/tshirt-dont-lie-23.webp?fit=400%2C560&ssl=1",
+      swatches: ["#fff","#888"]
+    },
+    {
+      name: "t.shirt into Paradise",
+      price: "30 000 CFA",
+      oldPrice: null,
+      badge: "sale",
+      badgeLabel: "édition limitée",
+      img: "https://i0.wp.com/dont-lie.com/wp-content/uploads/2021/10/dont-lie-paradise.webp?fit=400%2C560&ssl=1",
+      swatches: ["#1a1a1a"]
+    },
+    {
+      name: "Pantalon oversize",
+      price: "13 000 CFA",
+      oldPrice: null,
+      badge: "out",
+      badgeLabel: "stock out",
+      img: "https://i0.wp.com/dont-lie.com/wp-content/uploads/2024/07/PANTALON.webp?fit=400%2C560&ssl=1",
+      swatches: ["#3a3a3a","#8b5e3c"]
+    },
+    {
+      name: "Hoodie",
+      price: "35 000 CFA",
+      oldPrice: null,
+      badge: "out",
+      badgeLabel: "stock out",
+      img: "https://i0.wp.com/dont-lie.com/wp-content/uploads/2024/07/HOODIE.webp?fit=400%2C560&ssl=1",
+      swatches: ["#1a1a1a","#fff"]
+    },
+    {
+      name: "Chevalière / Bague",
+      price: "3 500 CFA",
+      oldPrice: null,
+      badge: "available",
+      badgeLabel: "disponible",
+      img: "https://i0.wp.com/dont-lie.com/wp-content/uploads/2024/07/bague-22.jpg?fit=400%2C560&ssl=1",
+      swatches: ["#c0a060","#888"]
+    },
+    {
+      name: "T.shirt x Ageenn",
+      price: "25 000 CFA",
+      oldPrice: "30 000 CFA",
+      badge: "out",
+      badgeLabel: "stock out",
+      img: "https://i0.wp.com/dont-lie.com/wp-content/uploads/2025/07/tshirt-dont-lie-36.webp?fit=400%2C560&ssl=1",
+      swatches: ["#fff","#1a1a1a"]
+    },
+  ];
+
+  // ===== CART STATE =====
+  let cartItems = [];
+  let currentQty = 1;
+
+  // ===== PRODUCT CARD FACTORY =====
+  function createProductCard(p, index) {
+    const swatchesHTML = p.swatches ? `<div class="color-swatches">${p.swatches.map(c=>`<div class="swatch" style="background:${c}"></div>`).join('')}</div>` : '';
+    const priceHTML = p.oldPrice
+      ? `<span class="price-old">${p.oldPrice}</span><span class="price-current">${p.price}</span>`
+      : `<span class="price-current">${p.price}</span>`;
+    const badgeHTML = p.badge ? `<span class="product-badge ${p.badge}">${p.badgeLabel || p.badge}</span>` : '';
+
+    return `
+      <div class="product-card" onclick="openProduct(${index})">
+        <div class="product-image">
+          ${badgeHTML}
+          <button class="fav-btn" title="Ajouter aux favoris" onclick="event.stopPropagation();toggleFav(this)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </button>
+          <img src="${p.img}" alt="${p.name}" loading="lazy" onerror="this.style.opacity=0;this.parentElement.style.background='linear-gradient(135deg,#f5f5f5,#ebebeb)'">
+        </div>
+        ${swatchesHTML}
+        <div class="product-info">
+          <div class="product-name">${p.name}</div>
+          <div class="product-price">${priceHTML}</div>
+        </div>
+        <div class="product-hover-btn" onclick="event.stopPropagation();quickAdd(${index})">Ajouter au panier</div>
+      </div>
+    `;
+  }
+
+  // Render grids
+  function renderGrids() {
+    document.getElementById('featured-grid').innerHTML = products.slice(0,8).map((p,i) => createProductCard(p,i)).join('');
+    document.getElementById('boutique-grid').innerHTML = products.map((p,i) => createProductCard(p,i)).join('');
+    document.getElementById('related-grid').innerHTML = products.slice(0,4).map((p,i) => createProductCard(p,i)).join('');
+  }
+  renderGrids();
+
+  // ===== PAGE NAVIGATION =====
+  function showPage(id) {
+    document.querySelectorAll('.page').forEach(p => {
+      p.classList.remove('active');
+      p.style.display = 'none';
+    });
+    const target = document.getElementById('page-' + id);
+    target.style.display = 'block';
+    target.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    return false;
+  }
+
+  // ===== PRODUCT PAGE =====
+  function openProduct(index) {
+    const p = products[index];
+    document.getElementById('pp-name').textContent = p.name;
+    document.getElementById('pp-breadcrumb-name').textContent = p.name;
+    document.getElementById('pp-main-img').src = p.img;
+    document.getElementById('pp-main-img').alt = p.name;
+
+    // Price
+    const priceEl = document.getElementById('pp-price');
+    priceEl.innerHTML = p.oldPrice
+      ? `${p.price} <span class="old">${p.oldPrice}</span>`
+      : p.price;
+
+    // Badge
+    const badgeWrap = document.getElementById('pp-badge-wrap');
+    badgeWrap.innerHTML = p.badge ? `<span class="product-badge ${p.badge}">${p.badgeLabel || p.badge}</span>` : '';
+
+    // Swatches
+    const swatchesEl = document.getElementById('pp-swatches');
+    swatchesEl.innerHTML = (p.swatches || []).map((c,i) =>
+      `<div class="product-page-swatch ${i===0?'active':''}" style="background:${c}" onclick="selectSwatch(this)"></div>`
+    ).join('');
+
+    // Thumbs (simulate with same image)
+    const thumbsEl = document.getElementById('pp-thumbs');
+    thumbsEl.innerHTML = '';
+    [p.img, p.img].forEach(function(img, i) {
+      var t = document.createElement('img');
+      t.className = 'product-thumb' + (i === 0 ? ' active' : '');
+      t.src = img; t.alt = '';
+      t.addEventListener('click', function(){ selectThumb(t, img); });
+      thumbsEl.appendChild(t);
+    });
+
+    // Related
+    const others = products.filter((_,i) => i !== index).slice(0,4);
+    document.getElementById('related-grid').innerHTML = others.map((op,i) => createProductCard(op, products.indexOf(op))).join('');
+
+    // Reset qty
+    currentQty = 1;
+    document.getElementById('qty-display').textContent = 1;
+
+    // Store current product index for addToCart
+    window._currentProductIndex = index;
+
+    showPage('product');
+  }
+
+  function selectThumb(el, src) {
+    document.querySelectorAll('.product-thumb').forEach(t => t.classList.remove('active'));
+    el.classList.add('active');
+    document.getElementById('pp-main-img').src = src;
+  }
+
+  function selectSwatch(el) {
+    document.querySelectorAll('.product-page-swatch').forEach(s => s.classList.remove('active'));
+    el.classList.add('active');
+  }
+
+  // ===== QUANTITY =====
+  function changeQty(delta) {
+    currentQty = Math.max(1, currentQty + delta);
+    document.getElementById('qty-display').textContent = currentQty;
+  }
+
+  // ===== CART =====
+  function addToCart() {
+    const p = products[window._currentProductIndex || 0];
+    const existing = cartItems.find(item => item.name === p.name);
+    if (existing) { existing.qty += currentQty; }
+    else { cartItems.push({ ...p, qty: currentQty }); }
+    renderCart();
+    openCart();
+    showToast('Article ajouté au panier ✓');
+  }
+
+  function quickAdd(index) {
+    const p = products[index];
+    const existing = cartItems.find(item => item.name === p.name);
+    if (existing) { existing.qty += 1; }
+    else { cartItems.push({ ...p, qty: 1 }); }
+    renderCart();
+    openCart();
+    showToast('Article ajouté au panier ✓');
+  }
+
+  function renderCart() {
+    const itemsEl = document.getElementById('cart-items');
+    const footerEl = document.getElementById('cart-footer');
+    const emptyEl = document.querySelector('.cart-empty');
+    const cartCountEls = document.querySelectorAll('.cart-count');
+
+    const totalCount = cartItems.reduce((s,i) => s + i.qty, 0);
+    cartCountEls.forEach(el => el.textContent = totalCount);
+
+    if (cartItems.length === 0) {
+      itemsEl.style.display = 'none';
+      footerEl.style.display = 'none';
+      emptyEl.style.display = 'flex';
+      return;
+    }
+
+    emptyEl.style.display = 'none';
+    itemsEl.style.display = 'flex';
+    footerEl.style.display = 'block';
+
+    itemsEl.innerHTML = cartItems.map((item, idx) => `
+      <div class="cart-item">
+        <img class="cart-item-img" src="${item.img}" alt="${item.name}" onerror="this.style.opacity=0">
+        <div>
+          <div class="cart-item-name">${item.name}</div>
+          <div class="cart-item-variant">Taille : M · Couleur : Default</div>
+          <div class="cart-item-qty">
+            <button onclick="updateQty(${idx}, -1)">−</button>
+            <span>${item.qty}</span>
+            <button onclick="updateQty(${idx}, 1)">+</button>
+          </div>
+        </div>
+        <div>
+          <div class="cart-item-price">${item.price}</div>
+          <button class="cart-item-remove" onclick="removeFromCart(${idx})" title="Supprimer">×</button>
+        </div>
+      </div>
+    `).join('');
+
+    // Total (approximate, CFA strings)
+    const total = cartItems.reduce((sum, item) => {
+      const num = parseInt(item.price.replace(/\s/g, '').replace('CFA','')) * item.qty;
+      return sum + (isNaN(num) ? 0 : num);
+    }, 0);
+    document.getElementById('cart-total-display').textContent = total.toLocaleString('fr-FR') + ' CFA';
+  }
+
+  function updateQty(idx, delta) {
+    cartItems[idx].qty = Math.max(1, cartItems[idx].qty + delta);
+    renderCart();
+  }
+
+  function removeFromCart(idx) {
+    cartItems.splice(idx, 1);
+    renderCart();
+    showToast('Article retiré du panier');
+  }
+
+  function openCart() {
+    document.getElementById('cart-drawer').classList.add('open');
+    document.getElementById('cart-overlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeCart() {
+    document.getElementById('cart-drawer').classList.remove('open');
+    document.getElementById('cart-overlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  // Bind cart icon
+  document.querySelectorAll('.header-icon').forEach(icon => {
+    if (icon.querySelector('path[d*="M6 2"]')) {
+      icon.addEventListener('click', e => { e.preventDefault(); openCart(); });
+    }
+  });
+
+  // ===== MOBILE MENU =====
+  function openMenu() {
+    document.getElementById('mobile-menu').classList.add('open');
+    document.getElementById('menu-overlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMenu() {
+    document.getElementById('mobile-menu').classList.remove('open');
+    document.getElementById('menu-overlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  // Add hamburger to header
+  const headerLeft = document.querySelector('.header-actions-left');
+  const ham = document.createElement('button');
+  ham.className = 'menu-ham';
+  ham.setAttribute('aria-label', 'Menu');
+  ham.innerHTML = '<span></span><span></span><span></span>';
+  ham.addEventListener('click', openMenu);
+  headerLeft.prepend(ham);
+
+  // ===== FILTER TOGGLE =====
+  function toggleFilter(el) {
+    el.classList.toggle('open');
+    const opts = el.nextElementSibling;
+    opts.style.display = opts.style.display === 'none' ? 'flex' : 'none';
+  }
+
+  // ===== SIZE BUTTONS =====
+  document.addEventListener('click', function(e) {
+    if (e.target.classList.contains('size-btn') && !e.target.classList.contains('unavailable')) {
+      document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
+      e.target.classList.add('active');
+    }
+  });
+
+  // ===== ACCORDION =====
+  function toggleAccordion(el) {
+    el.classList.toggle('open');
+    const body = el.nextElementSibling;
+    body.style.display = body.style.display === 'none' ? 'block' : 'none';
+  }
+
+  // ===== FAVORITES =====
+  function toggleFav(btn) {
+    const svg = btn.querySelector('svg');
+    const isActive = btn.dataset.active === '1';
+    btn.dataset.active = isActive ? '0' : '1';
+    svg.setAttribute('fill', isActive ? 'none' : '#e63946');
+    svg.setAttribute('stroke', isActive ? 'currentColor' : '#e63946');
+    showToast(isActive ? 'Retiré des favoris' : 'Ajouté aux favoris ♡');
+  }
+
+  // ===== VIEW TOGGLE =====
+  document.querySelectorAll('.view-btn').forEach((btn, i) => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.view-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const grid = document.getElementById('boutique-grid');
+      if (i === 1) {
+        grid.style.gridTemplateColumns = '1fr';
+        grid.querySelectorAll('.product-image').forEach(el => el.style.aspectRatio = '16/7');
+      } else {
+        grid.style.gridTemplateColumns = '';
+        grid.querySelectorAll('.product-image').forEach(el => el.style.aspectRatio = '');
+      }
+    });
+  });
+
+  // ===== TOAST =====
+  let toastTimer;
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => t.classList.remove('show'), 2800);
+  }
+
+  // ===== SEARCH =====
+  document.querySelector('.search-bar input').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter' && this.value.trim()) {
+      showPage('boutique');
+      showToast('Recherche : "' + this.value + '"');
+      this.value = '';
+    }
+  });
+
+  // ===== NEWSLETTER =====
+  document.querySelectorAll('.newsletter-form button, .footer-newsletter-input button').forEach(btn => {
+    btn.addEventListener('click', function() {
+      const input = this.previousElementSibling;
+      if (input && input.value.includes('@')) {
+        showToast('Inscription confirmée ! -10% sur votre commande 🎉');
+        input.value = '';
+      } else {
+        showToast('Veuillez entrer une adresse e-mail valide');
+      }
+    });
+  });
+
+  // ===== INIT =====
+  // Set all pages hidden except home
+  document.querySelectorAll('.page').forEach(p => {
+    if (!p.classList.contains('active')) p.style.display = 'none';
+  });
+</script>
+
+</body>
+</html>
